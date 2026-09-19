@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"bufio"
+	"fmt"
 	"os"
 	"strings"
 )
@@ -18,27 +18,26 @@ func SelectOperation(reader *bufio.Reader) string {
 		op, _ := reader.ReadString('\n')
 		op = strings.TrimSpace(op)
 
-		if op == "1" || op == "2" || op =="3" || op == "4" { 
+		if op == "1" || op == "2" || op == "3" || op == "4" {
 			return op
 		}
 		fmt.Println("Incorrect input. Please choose 1, 2, 3, or 4.")
 	}
-	
+
 }
 
 func CheckArguments(arguments []string) string {
-	if ( len(arguments) != 2 ||
-		 arguments[1] == "help" || 
-		 arguments[1] == "--help" || 
-		 arguments[1] == "-h" ) {
+	if len(arguments) != 2 ||
+		arguments[1] == "help" ||
+		arguments[1] == "--help" ||
+		arguments[1] == "-h" {
 
-			HelpMessage()
-			os.Exit(0)
-	} 
-	
+		HelpMessage()
+		os.Exit(0)
+	}
+
 	return arguments[1]
 }
-
 
 func HelpMessage() {
 	fmt.Println()
@@ -59,7 +58,3 @@ func HelpMessage() {
 	fmt.Println("If no argument is provided, more than one argument is provided,")
 	fmt.Println("or the argument is help, -h, or --help, this help message is displayed.")
 }
-
-
-
-
