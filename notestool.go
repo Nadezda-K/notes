@@ -30,7 +30,6 @@ func main() {
     	return
     }
     defer file.Close()
-    //fmt.Fprintf(file, "Hello\n")
 
 		// The actual appending is taken care of by the os.O_APPEND flag of the os.OpenFile()
 		// function. This flag tells Go to write at the end of the file. Additionally, 
@@ -49,13 +48,31 @@ func main() {
 		switch op {
 		case "1": // "show"
 			fmt.Println()
-			fmt.Println("show")
+			fmt.Println("Notes:")
+			//fileShow(file)
+			file.Seek(0, 0) //Move the file position 0 bytes from the beginning of the file.
+			fileReader := bufio.NewReader(file)
+			i := 1
+			for {
+				line, err := fileReader.ReadString('\n')
+				if err != nil {
+					break
+				}
+				fmt.Printf("%03d - %v", i, line)
+				i++
+			}
+			fmt.Println()
+
 		case "2": // "add"
 			fmt.Println()
-			fmt.Println("add")
+			fmt.Println("Enter the note text:")
+			//fileAdd()
+			note, _ := reader.ReadString('\n')
+			fmt.Fprintf(file, note)
 		case "3": // "delete"
 			fmt.Println()
-			fmt.Println("delete")
+			fmt.Println("Enter the number of note to remove or 0 to cancel:")
+			//fileDelete()
 		case "4": // "exit"
 			fmt.Println()
 			fmt.Println("Exiting....")
