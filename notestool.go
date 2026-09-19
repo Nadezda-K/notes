@@ -21,15 +21,16 @@ func main() {
 	fileName := CheckArguments(arguments)	
 
 	// Check whether the file exists; create it if it does not.
-	CheckCreateFile(fileName)
+	//CheckCreateFile(fileName)
 
-	    // file, err := os.OpenFile(fileName, os.O_RDWR|os.O_APPEND|os.O_CREATE, 0660)
-        // if err != nil {
-        //     fmt.Println(err)
-        //     return
-        // }
-        // defer file.Close()
-        // fmt.Fprintf(file, "Hello\n")
+	// Open file, create it if it does not.
+	file, err := os.OpenFile(fileName, os.O_RDWR|os.O_APPEND|os.O_CREATE, 0660)
+	if err != nil {
+    	fmt.Println(err)
+    	return
+    }
+    defer file.Close()
+    //fmt.Fprintf(file, "Hello\n")
 
 		// The actual appending is taken care of by the os.O_APPEND flag of the os.OpenFile()
 		// function. This flag tells Go to write at the end of the file. Additionally, 
