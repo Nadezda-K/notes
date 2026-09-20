@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
+	"strings"
 	// "strings"
 )
 
@@ -28,20 +30,27 @@ func main() {
 infForLoop:
 	for {
 		op := SelectOperation(reader)
-		//TODO: add a new note to the notes slice
 		switch op {
-		case "0":
 		case "1": // "show"
 			fmt.Println()
 			ShowNotes(notes) // Show all notes
 		case "2": // "add"
-			fmt.Println()
-			AddNote(notes, text) // Add a new note)
+			fmt.Println("Enter the note text:")
+			text, _ := reader.ReadString('\n')
+			notes = AddNote(notes, text)
+			SaveNotes(fileName, notes)
 		case "3": // "delete"
-			fmt.Println()
-			DeleteNote(notes)
+			fmt.Println("Enter the note number to delete:")
+			numStr, _ := reader.ReadString('\n')
+			cleanNum := strings.TrimSpace(numStr)
+			num, err := strconv.Atoi(cleanNum)
+			if err != nil {
+				fmt.Println("Invalid note number")
+			} else {
+				notes = DeleteNote(notes, num)
+				SaveNotes(fileName, notes)
+			}
 		case "4": // "exit"
-			fmt.Println()
 			fmt.Println("Exiting....")
 			break infForLoop
 		}

@@ -1,2 +1,20 @@
-__debug_bin*
+# Application binary & Delve debug binaries
 notes
+__debug_bin*
+
+# Test files & text collections
+*.txt
+
+# Go test artifacts & coverage
+*.test
+*.out
+
+# IDEs & editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS metadata
+.DS_Store
+Thumbs.db
