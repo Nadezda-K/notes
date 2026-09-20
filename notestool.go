@@ -35,22 +35,19 @@ func main() {
 		case "1": // "show"
 			fmt.Println()
 			fmt.Println("Notes:")
-			//fileShow(file)
-			loadedNotes := LoadNotes(fileName)
-
-			for _, note := range loadedNotes {
-				fmt.Println(note)
-			}
-			fmt.Println(loadedNotes)
+			
+			showNotes(fileName)
 
 		case "2": // "add"
 			fmt.Println()
 			fmt.Println("Enter the note text:")
-			//fileAdd()
+			
+			addNotes(fileName, reader)
 		case "3": // "delete"
 			fmt.Println()
 			fmt.Println("Enter the number of note to remove or 0 to cancel:")
-			//fileDelete()
+
+			deleteNote(fileName, reader)
 		case "4": // "exit"
 			fmt.Println()
 			fmt.Println("Exiting....")
