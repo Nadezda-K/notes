@@ -1,21 +1,21 @@
-package main 
+package main
 
 import "fmt"
 
-func showNotes(filename string){
+func showNotes(filename string) {
 	notes := LoadNotes(filename)
-	
-	//checking if notes are empty 
-	 if len(notes) == 0 {
-	 	fmt.Println("No notes found.")
+
+	//checking if notes are empty
+	if len(notes) == 0 {
+		fmt.Println("No notes found.")
 		fmt.Println()
-	 	return 
+		return
 	}
 
-	//displaying the notes just created 
+	//displaying the notes just created
 	for i, noteCollection := range notes {
-	 	//%d is used for inserting numbers, %s used for inserting Text
-	 	fmt.Printf("%03d -  %s\n", i+1, noteCollection)
+		//%d is used for inserting numbers, %s used for inserting Text
+		fmt.Printf("%03d - %s\n", i+1, noteCollection)
 	}
 	fmt.Println()
 }

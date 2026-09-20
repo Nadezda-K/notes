@@ -1,18 +1,17 @@
 //The user should be able to enter an ID, for example 2
 
-package main 
+package main
 
 import (
-	"fmt"
 	"bufio"
-	"strings"
+	"fmt"
 	"strconv"
+	"strings"
 )
 
-func deleteNote(filename string, reader *bufio.Reader ){
-	id_str,_ := reader.ReadString('\n')
+func deleteNote(filename string, reader *bufio.Reader) {
+	id_str, _ := reader.ReadString('\n')
 	id_str = strings.TrimSpace(id_str)
-
 
 	if id_str == "0" {
 		fmt.Println("Cancel delete operation")
@@ -20,19 +19,17 @@ func deleteNote(filename string, reader *bufio.Reader ){
 		return
 	}
 
+	notes := LoadNotes(filename)
 
-	notes := LoadNotes(filename) 
-
-	//i -- the position of the slice, note - the actual note 
-	// Range using notes from main.go 
+	//i -- the position of the slice, note - the actual note
+	// Range using notes from main.go
 	inx, err := strconv.Atoi(id_str)
 
 	if err != nil {
 		fmt.Println("Error: index is not a number", err)
 		fmt.Println()
-		return 
+		return
 	}
-
 
 	if inx <= len(notes) {
 		for i, _ := range notes {
@@ -51,4 +48,3 @@ func deleteNote(filename string, reader *bufio.Reader ){
 	}
 	return
 }
-
