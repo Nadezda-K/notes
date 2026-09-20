@@ -13,6 +13,11 @@ func addNotes(filename string, reader *bufio.Reader ){
 	text = strings.TrimSpace(text)
 
 
+	if text == "" {
+		fmt.Println("Text field is empty. Please, add text.")
+		fmt.Println()
+		return
+	}
 	notes := LoadNotes(filename)
 	notes = append(notes, text)
 

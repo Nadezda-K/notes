@@ -10,11 +10,11 @@ import (
 )
 
 func deleteNote(filename string, reader *bufio.Reader ){
-	id,_ := reader.ReadString('\n')
-	id = strings.TrimSpace(id)
+	id_str,_ := reader.ReadString('\n')
+	id_str = strings.TrimSpace(id_str)
 
 
-	if id == "0" {
+	if id_str == "0" {
 		fmt.Println("Cancel delete operation")
 		fmt.Println()
 		return
@@ -25,10 +25,11 @@ func deleteNote(filename string, reader *bufio.Reader ){
 
 	//i -- the position of the slice, note - the actual note 
 	// Range using notes from main.go 
-	inx, err := strconv.Atoi(id)
+	inx, err := strconv.Atoi(id_str)
 
 	if err != nil {
 		fmt.Println("Error: index is not a number", err)
+		fmt.Println()
 		return 
 	}
 
