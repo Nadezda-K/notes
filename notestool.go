@@ -24,20 +24,22 @@ func main() {
 	fmt.Println("Welcome to the Notes Tool!")
 	fmt.Println()
 
+	notes := LoadNotes(fileName)
 infForLoop:
 	for {
 		op := SelectOperation(reader)
-
+		//TODO: add a new note to the notes slice
 		switch op {
+		case "0":
 		case "1": // "show"
 			fmt.Println()
-			fmt.Println("show")
+			ShowNotes(notes) // Show all notes
 		case "2": // "add"
 			fmt.Println()
-			fmt.Println("add")
+			AddNote(notes, text) // Add a new note)
 		case "3": // "delete"
 			fmt.Println()
-			fmt.Println("delete")
+			DeleteNote(notes)
 		case "4": // "exit"
 			fmt.Println()
 			fmt.Println("Exiting....")
