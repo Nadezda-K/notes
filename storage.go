@@ -45,5 +45,8 @@ func SaveNotes(filename string, notes []string) {
 	// Ensure the file descriptor is released when saving is finished
 	defer file.Close()
 
-	// TODO: iterate over the notes slice and write each note on a new line
+	// Automatically write each note to the file, one per line
+	for _, note := range notes {
+		fmt.Fprintln(file, note)
+	}
 }
