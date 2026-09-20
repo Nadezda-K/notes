@@ -1,10 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"bufio"
+	"fmt"
 	"os"
-//	"strings"
+	// "strings"
 )
 
 func main() {
@@ -16,7 +16,7 @@ func main() {
 	//	Checking number of arguments, showing help menue if necessary,
 	//	taking name of file
 	fileName := CheckArguments(arguments)
-	fmt.Printf("File name: %v, %T", fileName, fileName)		
+	fmt.Printf("File name: %v, %T", fileName, fileName)
 
 	// Check if file exist - open, if not - create
 
@@ -24,7 +24,8 @@ func main() {
 	fmt.Println("Welcome to the Notes Tool!")
 	fmt.Println()
 
-	infForLoop: for {
+infForLoop:
+	for {
 		op := SelectOperation(reader)
 
 		switch op {
@@ -43,5 +44,5 @@ func main() {
 			break infForLoop
 		}
 	}
-	
+
 }
