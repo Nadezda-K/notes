@@ -55,14 +55,16 @@ func CheckCreateFile(fileName string) {
 	if os.IsNotExist(err) {
 		file, err := os.Create(fileName)
 		if err != nil {
-			fmt.Println(Red +"Error creating file:" + Reset, err)
+			fmt.Println(Red+"Error creating file:"+Reset, err)
+			os.Exit(1)
 		}
-		defer file.Close() // Close file
-		fmt.Println(Green + "Created new notes collection:" + Reset, fileName)
+		defer file.Close()
+
+		fmt.Println(Green+"Created new notes collection:"+Reset, fileName)
 		fmt.Println()
 	} else {
-		fmt.Println(Green + "Notes collection" + Reset, fileName, Green + "exists."  + Reset)
-		fmt.Println(Green + "Working with notes collection:" + Reset, fileName)
+		fmt.Println(Green+"Notes collection"+Reset, fileName, Green+"exists."+Reset)
+		fmt.Println(Green+"Working with notes collection:"+Reset, fileName)
 		fmt.Println()
 
 		// file, err := os.Open(fileName)
