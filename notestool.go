@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	// "strings"
 )
 
 const (
@@ -16,7 +15,7 @@ const (
 )
 
 func main() {
-	// Check arguments, show help if needed, and get the file name.
+	// Get the collection filename before starting the program.
 	fileName := CheckArguments(os.Args)
 
 	fmt.Println()
@@ -25,35 +24,36 @@ func main() {
 
 	reader := bufio.NewReader(os.Stdin)
 
-	// Check whether the file exists; create it if it does not.
+	// Make sure the collection file is ready before using it.
 	CheckCreateFile(fileName)
 
-	//-----------------------------------------------
-	//	Main menu of the tool
-	//-----------------------------------------------
 infForLoop:
 	for {
-		// Display the main menu and get user input.
+		// The loop lets the user perform several actions in one run.
 		op := SelectOperation(reader)
 
 		switch op {
-		case "1": // "show"
+		case "1":
+			// Show all notes stored in the selected collection.
 			fmt.Println()
 			fmt.Println(Magenta + "Notes:" + Reset)
 
 			showNotes(fileName)
 
-		case "2": // "add"
+		case "2":
+			// Read and save one new note.
 			fmt.Println()
 			fmt.Println(Magenta + "Enter the note text:" + Reset)
 
 			addNotes(fileName, reader)
-		case "3": // "delete"
+		case "3":
+			// Ask for a note number and remove that note.
 			fmt.Println()
 			fmt.Println(Magenta + "Enter the number of note to remove or 0 to cancel:" + Reset)
 
 			deleteNote(fileName, reader)
-		case "4": // "exit"
+		case "4":
+			// Leave the loop and finish the program.
 			fmt.Println()
 			fmt.Println("Exiting....")
 			break infForLoop

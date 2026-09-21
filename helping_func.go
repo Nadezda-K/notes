@@ -7,9 +7,7 @@ import (
 	"strings"
 )
 
-// -----------------------------------------------
-// Function to display the main menu and get user input.
-// -----------------------------------------------
+// SelectOperation shows the menu and returns a valid option.
 func SelectOperation(reader *bufio.Reader) string {
 	for {
 		fmt.Println(Magenta + "Select operation:" + Reset)
@@ -18,6 +16,7 @@ func SelectOperation(reader *bufio.Reader) string {
 		fmt.Println("3. Delete a note.")
 		fmt.Println("4. Exit.")
 
+		// Keep asking until the user enters one of the four menu options.
 		op, _ := reader.ReadString('\n')
 		op = strings.TrimSpace(op)
 
@@ -30,11 +29,9 @@ func SelectOperation(reader *bufio.Reader) string {
 
 }
 
-// -----------------------------------------------
-// Function to check arguments, show help if needed,
-// and get the file name.
-// -----------------------------------------------
+// CheckArguments checks the command-line arguments and returns the filename.
 func CheckArguments(arguments []string) string {
+	// The program needs exactly one filename. Help words show the help text.
 	if len(arguments) != 2 ||
 		arguments[1] == "help" ||
 		arguments[1] == "--help" ||
@@ -45,14 +42,13 @@ func CheckArguments(arguments []string) string {
 	return arguments[1]
 }
 
-// -----------------------------------------------
-// Function to check whether the file exists;
-// create it if it does not.
-// -----------------------------------------------
+// CheckCreateFile checks the collection file and creates it when needed.
 func CheckCreateFile(fileName string) {
-	var _, err = os.Stat(fileName)
+	// os.Stat tells us whether the file already exists.
+	_, err := os.Stat(fileName)
 
 	if os.IsNotExist(err) {
+		// Create an empty file on the first run.
 		file, err := os.Create(fileName)
 		if err != nil {
 			fmt.Println(Red+"Error creating file:"+Reset, err)
@@ -62,27 +58,18 @@ func CheckCreateFile(fileName string) {
 
 		fmt.Println(Green+"Created new notes collection:"+Reset, fileName)
 		fmt.Println()
-	} else {
+	} else if err == nil {
+		// The file exists, so the program can use it.
 		fmt.Println(Green+"Notes collection"+Reset, fileName, Green+"exists."+Reset)
 		fmt.Println(Green+"Working with notes collection:"+Reset, fileName)
 		fmt.Println()
-
-		// file, err := os.Open(fileName)
-		// if err != nil {
-		// 	fmt.Println("Error opening file:", err)
-		// 	return
-		// }
-		// // Ensure file is closed
-		// defer file.Close()
+	} else {
+		fmt.Println(Red+"Error checking notes collection:"+Reset, err)
+		os.Exit(1)
 	}
-
 }
 
-// -----------------------------------------------
-//
-//	Funcltion to display help message
-//
-// -----------------------------------------------
+// HelpMessage prints simple instructions for starting the program.
 func HelpMessage() {
 	fmt.Println()
 	fmt.Println(Blue + "Usage: ./notestool <file>" + Reset)
