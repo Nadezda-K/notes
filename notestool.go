@@ -1,10 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"bufio"
+	"fmt"
 	"os"
-//	"strings"
+	// "strings"
 )
 
 func main() {
@@ -18,16 +18,16 @@ func main() {
 	arguments := os.Args
 
 	// Check arguments, show help if needed, and get the file name.
-	fileName := CheckArguments(arguments)	
+	fileName := CheckArguments(arguments)
 
 	// Check whether the file exists; create it if it does not.
 	CheckCreateFile(fileName)
 
-
 	//-----------------------------------------------
 	//	Main menu of the tool
 	//-----------------------------------------------
-	infForLoop: for {
+infForLoop:
+	for {
 		// Display the main menu and get user input.
 		op := SelectOperation(reader)
 
@@ -35,13 +35,13 @@ func main() {
 		case "1": // "show"
 			fmt.Println()
 			fmt.Println("Notes:")
-			
+
 			showNotes(fileName)
 
 		case "2": // "add"
 			fmt.Println()
 			fmt.Println("Enter the note text:")
-			
+
 			addNotes(fileName, reader)
 		case "3": // "delete"
 			fmt.Println()
@@ -54,5 +54,5 @@ func main() {
 			break infForLoop
 		}
 	}
-	
+
 }
