@@ -8,10 +8,10 @@ import (
 )
 
 const (
-	Reset = "\033[0m"
-	Red = "\033[31m"
-	Green = "\033[32m"
-	Blue = "\033[34m"
+	Reset   = "\033[0m"
+	Red     = "\033[31m"
+	Green   = "\033[32m"
+	Blue    = "\033[34m"
 	Magenta = "\033[35m"
 )
 
