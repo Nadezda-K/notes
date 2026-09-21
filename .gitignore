@@ -1,0 +1,26 @@
+# Executable files and Delve debugger artifacts
+notestool
+notes
+__debug_bin*
+
+# Go profiler output
+*.test
+*.out
+*_test.go
+
+# IDEAs trash files
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS trash files
+.DS_Store
+Thumbs.db
+
+# Text files
+*.txt
+!collection.txt
+
+# Extra files
+extra_*
