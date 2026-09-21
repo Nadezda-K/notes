@@ -16,17 +16,14 @@ const (
 )
 
 func main() {
+	// Check arguments, show help if needed, and get the file name.
+	fileName := CheckArguments(os.Args)
+
 	fmt.Println()
 	fmt.Println("Welcome to the Notes Tool!")
 	fmt.Println()
 
 	reader := bufio.NewReader(os.Stdin)
-
-	//	Taking arguments form command line
-	arguments := os.Args
-
-	// Check arguments, show help if needed, and get the file name.
-	fileName := CheckArguments(arguments)
 
 	// Check whether the file exists; create it if it does not.
 	CheckCreateFile(fileName)
