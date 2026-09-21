@@ -26,7 +26,7 @@ func deleteNote(filename string, reader *bufio.Reader) {
 	inx, err := strconv.Atoi(id_str)
 
 	if err != nil {
-		fmt.Println("Error: index is not a number", err)
+		fmt.Println(Red + "Error: index is not a number" + Reset, err)
 		fmt.Println()
 		return
 	}
@@ -36,14 +36,14 @@ func deleteNote(filename string, reader *bufio.Reader) {
 			if i+1 == inx {
 				notes = append(notes[:i], notes[i+1:]...)
 
-				fmt.Println("Note deleted!")
+				fmt.Println(Green + "Note deleted!" + Reset)
 				fmt.Println()
 			}
 			//calling this function to make changes in the json
 			SaveNotes(filename, notes)
 		}
 	} else {
-		fmt.Println("Note not found")
+		fmt.Println(Red + "Note not found" + Reset)
 		fmt.Println()
 	}
 	return

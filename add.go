@@ -14,7 +14,7 @@ func addNotes(filename string, reader *bufio.Reader) {
 	text = strings.TrimSpace(text)
 
 	if text == "" {
-		fmt.Println("Text field is empty. Please, add text.")
+		fmt.Println(Red + "Text field is empty. Please, add text." + Reset)
 		fmt.Println()
 		return
 	}
@@ -24,6 +24,6 @@ func addNotes(filename string, reader *bufio.Reader) {
 	//calling this function to save notes to
 	SaveNotes(filename, notes)
 
-	fmt.Println("Note added!")
+	fmt.Println(Green + "Note added!" + Reset)
 	fmt.Println()
 }

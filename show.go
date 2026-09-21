@@ -7,7 +7,7 @@ func showNotes(filename string) {
 
 	//checking if notes are empty
 	if len(notes) == 0 {
-		fmt.Println("No notes found.")
+		fmt.Println(Red + "No notes found." + Reset)
 		fmt.Println()
 		return
 	}

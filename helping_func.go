@@ -12,7 +12,7 @@ import (
 // -----------------------------------------------
 func SelectOperation(reader *bufio.Reader) string {
 	for {
-		fmt.Println("Select operation:")
+		fmt.Println(Magenta + "Select operation:" + Reset)
 		fmt.Println("1. Show notes.")
 		fmt.Println("2. Add a note.")
 		fmt.Println("3. Delete a note.")
@@ -24,7 +24,7 @@ func SelectOperation(reader *bufio.Reader) string {
 		if op == "1" || op == "2" || op == "3" || op == "4" {
 			return op
 		}
-		fmt.Println("Incorrect input. Please choose 1, 2, 3, or 4.")
+		fmt.Println(Red + "Incorrect input. Please choose 1, 2, 3, or 4." + Reset)
 		fmt.Println()
 	}
 
@@ -55,14 +55,14 @@ func CheckCreateFile(fileName string) {
 	if os.IsNotExist(err) {
 		file, err := os.Create(fileName)
 		if err != nil {
-			fmt.Println("Error creating file:", err)
+			fmt.Println(Red +"Error creating file:" + Reset, err)
 		}
 		defer file.Close() // Close file
-		fmt.Println("Created new notes collection:", fileName)
+		fmt.Println(Green + "Created new notes collection:" + Reset, fileName)
 		fmt.Println()
 	} else {
-		fmt.Println("Notes collection", fileName, "exists.")
-		fmt.Println("Working with notes collection:", fileName)
+		fmt.Println(Green + "Notes collection" + Reset, fileName, Green + "exists."  + Reset)
+		fmt.Println(Green + "Working with notes collection:" + Reset, fileName)
 		fmt.Println()
 
 		// file, err := os.Open(fileName)
@@ -83,23 +83,23 @@ func CheckCreateFile(fileName string) {
 // -----------------------------------------------
 func HelpMessage() {
 	fmt.Println()
-	fmt.Println("Usage: ./notestool <file>")
-	fmt.Println("\tOpen an existing note file or create a new one if it does not exist.")
+	fmt.Println(Blue + "Usage: ./notestool <file>" + Reset)
+	fmt.Println(Blue + "\tOpen an existing note file or create a new one if it does not exist." + Reset)
 	fmt.Println()
-	fmt.Println("Options:")
-	fmt.Println("\t-h, --help, help Display this help message.")
-	fmt.Println()
-
-	fmt.Println("Examples:")
-	fmt.Println("./notestool notes.txt")
-	fmt.Println("\tOpen or create notes.txt.")
-	fmt.Println("./notestool help")
-	fmt.Println("\tDisplay this help message.")
+	fmt.Println(Blue + "Options:" + Reset)
+	fmt.Println(Blue + "\t-h, --help, help Display this help message." + Reset)
 	fmt.Println()
 
-	fmt.Println("The program requires exactly one argument.")
+	fmt.Println(Blue + "Examples:" + Reset)
+	fmt.Println(Blue + "./notestool notes.txt" + Reset)
+	fmt.Println(Blue + "\tOpen or create notes.txt." + Reset)
+	fmt.Println(Blue + "./notestool help" + Reset)
+	fmt.Println(Blue + "\tDisplay this help message." + Reset)
 	fmt.Println()
-	fmt.Println("If no argument is provided, more than one argument is provided, or the argument is help, -h, or --help, this help message is displayed.")
+
+	fmt.Println(Blue + "The program requires exactly one argument." + Reset)
+	fmt.Println()
+	fmt.Println(Blue + "If no argument is provided, more than one argument is provided, or the argument is help, -h, or --help, this help message is displayed." + Reset)
 	fmt.Println()
 
 }

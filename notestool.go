@@ -7,6 +7,14 @@ import (
 	// "strings"
 )
 
+const (
+	Reset = "\033[0m"
+	Red = "\033[31m"
+	Green = "\033[32m"
+	Blue = "\033[34m"
+	Magenta = "\033[35m"
+)
+
 func main() {
 	fmt.Println()
 	fmt.Println("Welcome to the Notes Tool!")
@@ -34,18 +42,18 @@ infForLoop:
 		switch op {
 		case "1": // "show"
 			fmt.Println()
-			fmt.Println("Notes:")
+			fmt.Println(Magenta + "Notes:" + Reset)
 
 			showNotes(fileName)
 
 		case "2": // "add"
 			fmt.Println()
-			fmt.Println("Enter the note text:")
+			fmt.Println(Magenta + "Enter the note text:" + Reset)
 
 			addNotes(fileName, reader)
 		case "3": // "delete"
 			fmt.Println()
-			fmt.Println("Enter the number of note to remove or 0 to cancel:")
+			fmt.Println(Magenta + "Enter the number of note to remove or 0 to cancel:" + Reset)
 
 			deleteNote(fileName, reader)
 		case "4": // "exit"

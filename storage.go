@@ -12,7 +12,7 @@ func LoadNotes(filename string) []string {
 	file, err := os.Open(filename)
 	if err != nil {
 		// If the file does not exist yet (first launch), return nil as an empty list
-		fmt.Println("Error opening file:", err)
+		fmt.Println(Red + "Error opening file:" + Reset, err)
 		return nil
 	}
 
@@ -30,7 +30,7 @@ func LoadNotes(filename string) []string {
 
 	// Check if scanning stopped because of a disk read error rather than reaching EOF
 	if err := scanner.Err(); err != nil {
-		fmt.Println("Error reading file:", err)
+		fmt.Println(Red + "Error reading file:" + Reset, err)
 	}
 
 	return notes
@@ -41,7 +41,7 @@ func SaveNotes(filename string, notes []string) {
 	// os.Create creates the file if missing, or truncates (clears) it if it already exists
 	file, err := os.Create(filename)
 	if err != nil {
-		fmt.Println("Error creating file:", err)
+		fmt.Println(Red + "Error creating file:" + Reset, err)
 		return
 	}
 	// Ensure the file descriptor is released when saving is finished
