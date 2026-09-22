@@ -3,14 +3,22 @@ package main
 import (
 	"bufio"
 	"fmt"
-
-	//	"os"
+	"io"
 	"strings"
 )
 
+// addNotes reads one note and saves it in the collection.
 func addNotes(filename string, reader *bufio.Reader) {
-	// take text from user
-	text, _ := reader.ReadString('\n')
+	// Read until Enter. io.EOF is also allowed because the last line
+	// can exist without a new line character.
+	text, err := reader.ReadString('\n')
+	if err != nil && err != io.EOF {
+		fmt.Println(Red+"Error reading note:"+Reset, err)
+		fmt.Println()
+		return
+	}
+
+	// Remove spaces and the new line before checking the note.
 	text = strings.TrimSpace(text)
 
 	if text == "" {
@@ -18,10 +26,11 @@ func addNotes(filename string, reader *bufio.Reader) {
 		fmt.Println()
 		return
 	}
+
+	// Load old notes, add the new note to the end, and save all notes again.
 	notes := LoadNotes(filename)
 	notes = append(notes, text)
 
-	//calling this function to save notes to
 	SaveNotes(filename, notes)
 
 	fmt.Println(Green + "Note added!" + Reset)

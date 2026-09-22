@@ -66,7 +66,7 @@ The tool takes **exactly one argument**: the name of the collection you want to 
   If no argument is passed, if more than one argument is provided, or if the argument is `help`, `-h`, or `--help`, the tool displays a usage hint and exits immediately:
   ```text
   $ ./notestool
-  Usage: ./todotool [TAG]
+  Usage: ./notestool <file>
   ```
 
 ---
