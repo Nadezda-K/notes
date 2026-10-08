@@ -1,6 +1,14 @@
 # Notes Tool
 
-A command-line application in Go for creating, viewing, and managing single-line notes organized into persistent collections.
+A Go learning project for creating, viewing, and managing single-line notes organized into persistent collections.
+
+## Task
+
+Build an interactive command-line tool that opens or creates a notes collection, displays its entries, adds new notes, and deletes notes by number while preserving changes between runs.
+
+## Learning Focus
+
+Practice functions, slices, buffered input, command-line arguments, input validation, and reading and writing plain-text files.
 
 ---
 
@@ -34,11 +42,13 @@ The project logic is modularized across dedicated files:
 
 ### Compilation & Execution
 
-The application is built using standard Go tools without any external dependencies.
+The application uses the Go standard library without external dependencies. The current `go.mod` declares Go 1.27.1.
+
+Select the files listed below explicitly: `notestool_my_only.go` is an alternative implementation with its own `main` function, so including every Go file causes a duplicate entry point.
 
 Build the binary:
 ```bash
-go build -o notestool .
+go build -o notestool notestool.go helping_func.go add.go show.go delete.go storage.go
 ```
 
 Run the compiled executable:
@@ -48,7 +58,7 @@ Run the compiled executable:
 
 Or run directly using Go:
 ```bash
-go run . <collection_name>
+go run notestool.go helping_func.go add.go show.go delete.go storage.go <collection_name>
 ```
 
 ---
@@ -173,7 +183,7 @@ The data storage system is built around plain text files:
 
 ## Technical Constraints & Packages
 
-This project strictly adheres to the task constraints, using only the permitted Go standard library packages:
+The project uses these Go standard library packages:
 - `bufio`: Buffered reading of terminal input and scanning text files line-by-line.
 - `fmt`: Terminal I/O formatting and file printing.
 - `os`: File opening, creation, closing, and argument parsing.
